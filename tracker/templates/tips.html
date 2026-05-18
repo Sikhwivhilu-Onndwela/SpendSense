@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Money Tips | SpendSense{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="section-label">Tool 02</div>
+  <h1>Money <span class="gold">Tips</span></h1>
+  <p>Real practical advice for South African students. Not generic — these tips work in our streets, our taxis, our spazas.</p>
+</section>
+
+<section class="tips-section">
+
+  <div class="tips-category">
+    <div class="tips-cat-header">
+      <span class="tips-icon">🚕</span>
+      <h2>Transport</h2>
+    </div>
+    <div class="tips-grid">
+      {% for tip in tips_data.transport %}
+      <div class="tip-card">
+        <div class="tip-number">0{{ forloop.counter }}</div>
+        <p>{{ tip }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tips-category">
+    <div class="tips-cat-header">
+      <span class="tips-icon">🍔</span>
+      <h2>Food and Groceries</h2>
+    </div>
+    <div class="tips-grid">
+      {% for tip in tips_data.food %}
+      <div class="tip-card">
+        <div class="tip-number">0{{ forloop.counter }}</div>
+        <p>{{ tip }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tips-category">
+    <div class="tips-cat-header">
+      <span class="tips-icon">📱</span>
+      <h2>Airtime and Data</h2>
+    </div>
+    <div class="tips-grid">
+      {% for tip in tips_data.airtime %}
+      <div class="tip-card">
+        <div class="tip-number">0{{ forloop.counter }}</div>
+        <p>{{ tip }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tips-category">
+    <div class="tips-cat-header">
+      <span class="tips-icon">🏦</span>
+      <h2>Savings</h2>
+    </div>
+    <div class="tips-grid">
+      {% for tip in tips_data.savings %}
+      <div class="tip-card gold-card">
+        <div class="tip-number">0{{ forloop.counter }}</div>
+        <p>{{ tip }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2>Now put it into practice.</h2>
+    <p>Use the budget tracker to see where your money actually goes.</p>
+    <a href="{% url 'tracker' %}" class="btn-primary">Open Budget Tracker →</a>
+  </div>
+</section>
+
+{% endblock %}

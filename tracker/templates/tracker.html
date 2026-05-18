@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block title %}Budget Tracker | SpendSense{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="section-label">Tool 01</div>
+  <h1>Budget <span class="gold">Tracker</span></h1>
+  <p>Enter your monthly allowance and what you have spent. We will show you exactly where your money went.</p>
+</section>
+
+<section class="tracker-section">
+  <div class="tracker-wrap">
+
+    <div class="tracker-form-card">
+      <h3>Enter Your Numbers</h3>
+      <form method="POST" action="{% url 'tracker' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="allowance">💰 Monthly Allowance (R)</label>
+          <input type="number" id="allowance" name="allowance" placeholder="e.g. 1500"
+            min="0" step="0.01" required value="{{ result.allowance|default:'' }}">
+        </div>
+        <div class="form-divider">Where did it go?</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="food">🍔 Food and Groceries (R)</label>
+            <input type="number" id="food" name="food" placeholder="0.00"
+              min="0" step="0.01" value="{{ result.food|default:'' }}">
+          </div>
+          <div class="form-group">
+            <label for="transport">🚕 Transport and Taxi (R)</label>
+            <input type="number" id="transport" name="transport" placeholder="0.00"
+              min="0" step="0.01" value="{{ result.transport|default:'' }}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="airtime">📱 Airtime and Data (R)</label>
+            <input type="number" id="airtime" name="airtime" placeholder="0.00"
+              min="0" step="0.01" value="{{ result.airtime|default:'' }}">
+          </div>
+          <div class="form-group">
+            <label for="entertainment">🎮 Entertainment (R)</label>
+            <input type="number" id="entertainment" name="entertainment" placeholder="0.00"
+              min="0" step="0.01" value="{{ result.entertainment|default:'' }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="other">📦 Other Expenses (R)</label>
+          <input type="number" id="other" name="other" placeholder="0.00"
+            min="0" step="0.01" value="{{ result.other|default:'' }}">
+        </div>
+        <button type="submit" class="btn-primary full-w">Calculate My Spending →</button>
+      </form>
+    </div>
+
+    {% if result %}
+    <div class="results-card status-{{ result.status }}">
+      <div class="result-message">{{ result.message }}</div>
+      <div class="result-summary">
+        <div class="res-item">
+          <span class="res-label">Allowance</span>
+          <span class="res-val">R{{ result.allowance|floatformat:2 }}</span>
+        </div>
+        <div class="res-item">
+          <span class="res-label">Total Spent</span>
+          <span class="res-val spent">R{{ result.total_spent|floatformat:2 }}</span>
+        </div>
+        <div class="res-item">
+          <span class="res-label">Remaining</span>
+          <span class="res-val {% if result.remaining < 0 %}danger{% else %}safe{% endif %}">
+            R{{ result.remaining|floatformat:2 }}
+          </span>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Spent {{ result.percent_spent }}%</span>
+          <span>of your allowance</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill status-{{ result.status }}"
+            style="width: {% if result.percent_spent > 100 %}100{% else %}{{ result.percent_spent }}{% endif %}">
+          </div>
+        </div>
+      </div>
+      <div class="breakdown">
+        <h4>Spending Breakdown</h4>
+        {% if result.food > 0 %}
+        <div class="breakdown-item">
+          <span class="b-label">🍔 Food</span>
+          <div class="b-track">
+            <div class="b-fill food" style="width:{% widthratio result.food result.allowance 100 %}"></div>
+          </div>
+          <span class="b-amt">R{{ result.food|floatformat:2 }}</span>
+        </div>
+        {% endif %}
+        {% if result.transport > 0 %}
+        <div class="breakdown-item">
+          <span class="b-label">🚕 Transport</span>
+          <div class="b-track">
+            <div class="b-fill transport" style="width:{% widthratio result.transport result.allowance 100 %}"></div>
+          </div>
+          <span class="b-amt">R{{ result.transport|floatformat:2 }}</span>
+        </div>
+        {% endif %}
+        {% if result.airtime > 0 %}
+        <div class="breakdown-item">
+          <span class="b-label">📱 Airtime</span>
+          <div class="b-track">
+            <div class="b-fill airtime" style="width:{% widthratio result.airtime result.allowance 100 %}"></div>
+          </div>
+          <span class="b-amt">R{{ result.airtime|floatformat:2 }}</span>
+        </div>
+        {% endif %}
+        {% if result.entertainment > 0 %}
+        <div class="breakdown-item">
+          <span class="b-label">🎮 Entertainment</span>
+          <div class="b-track">
+            <div class="b-fill entertainment" style="width:{% widthratio result.entertainment result.allowance 100 %}"></div>
+          </div>
+          <span class="b-amt">R{{ result.entertainment|floatformat:2 }}</span>
+        </div>
+        {% endif %}
+        {% if result.other > 0 %}
+        <div class="breakdown-item">
+          <span class="b-label">📦 Other</span>
+          <div class="b-track">
+            <div class="b-fill other" style="width:{% widthratio result.other result.allowance 100 %}"></div>
+          </div>
+          <span class="b-amt">R{{ result.other|floatformat:2 }}</span>
+        </div>
+        {% endif %}
+      </div>
+      <a href="{% url 'tips' %}" class="btn-ghost full-w" style="margin-top:1.5rem; display:block; text-align:center;">
+        💡 Get Money Saving Tips →
+      </a>
+    </div>
+    {% else %}
+    <div class="results-placeholder">
+      <div class="placeholder-icon">📊</div>
+      <p>Fill in your numbers on the left and hit <strong>Calculate</strong> — your breakdown will appear here.</p>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

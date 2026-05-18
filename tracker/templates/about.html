@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}About | SpendSense{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="section-label">Our Story</div>
+  <h1>About <span class="gold">SpendSense</span></h1>
+  <p>A platform born from a real problem that every South African student knows.</p>
+</section>
+
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Why this exists</h2>
+      <p>Every month, millions of South African students receive an allowance — from parents, from NSFAS, from part-time jobs. And every month, that money runs out before it should. Not because they do not work hard. Not because they do not care. But because nobody ever taught them how to manage it.</p>
+      <p>SpendSense was built to change that. It is a simple, free platform that gives students the tools to see, understand and improve their spending — starting with the very first rand.</p>
+      <h2 style="margin-top:2rem;">Who it is for</h2>
+      <ul class="about-list">
+        <li>📚 University and college students on a tight budget</li>
+        <li>🏫 High school learners learning to manage pocket money</li>
+        <li>💼 Young adults starting their first part-time job</li>
+        <li>🏠 Anyone in South Africa wanting to stretch their rands further</li>
+      </ul>
+    </div>
+    <div class="about-values">
+      <div class="value-card">
+        <div class="val-icon">🔓</div>
+        <h4>Always Free</h4>
+        <p>No subscriptions, no hidden costs. Financial literacy should be accessible to everyone.</p>
+      </div>
+      <div class="value-card">
+        <div class="val-icon">🇿🇦</div>
+        <h4>Made for SA</h4>
+        <p>Every tip and every rand amount is tailored to the South African student reality.</p>
+      </div>
+      <div class="value-card">
+        <div class="val-icon">🔒</div>
+        <h4>No Data Collected</h4>
+        <p>We do not store your numbers. Everything stays in your session. Your finances, your business.</p>
+      </div>
+      <div class="value-card">
+        <div class="val-icon">📈</div>
+        <h4>Built to Grow</h4>
+        <p>Future versions will include savings goals, NSFAS budgeting tools and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission-banner">
+  <blockquote>
+    "Financial freedom begins with financial awareness. SpendSense gives every South African student that first step."
+  </blockquote>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2>Ready to take control?</h2>
+    <p>Start tracking your spending in under 60 seconds.</p>
+    <a href="{% url 'tracker' %}" class="btn-primary">Open Budget Tracker →</a>
+  </div>
+</section>
+
+{% endblock %}
