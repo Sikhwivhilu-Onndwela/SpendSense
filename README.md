@@ -57,18 +57,27 @@ Most financial apps are too complex, too expensive, or not built for the South A
 ```bash
 git clone https://github.com/Sikhwivhilu-Onndwela/SpendSense.git
 cd SpendSense
+```
 
 **Step 2-Create a virtual environment**
 ```bash
 python -m venv venv
 venv\Scripts\activate
+```
+
+**Step 3 - Install dependencies**
+```bash
+pip install -r requirements.txt
+```
 
 **Step 4- Run the Server**
 ```bash
 python manage.py runserver
+```
 
 **Step 5 -Open in browser**
 http://127.0.0.1:8000
+
 
 ## 🔮 Future Plans
 
@@ -76,6 +85,10 @@ http://127.0.0.1:8000
 -[] Monthly spending history
 -[] NSFAS specific budgeting tools
 -[] Savings goals tracker
+
+---
+## 👩🏽‍💻About The Developer
+My name is Sikhwivhilu Onndwela, a student at CUT. I built SpendSense because I personally ran out of money before month end and I know many students face the same struggle. I wanted to use my coding skills to solve skills to solve a real problem that affects real people in South Africa.
 
 ---
 © 2026 SpendSense · Built with Django · Made in South Africa 🇿🇦
