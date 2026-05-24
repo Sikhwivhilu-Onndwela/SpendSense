@@ -1,6 +1,7 @@
 # 💸 SpendSense
 Smart Spending for South African Students
-🌍 **Live Website:** https://sikhwivhiluo.pythonanywhere.com/
+
+**Live Website:** https://sikhwivhiluo.pythonanywhere.com/
 
 ## 📌About The Project
 
