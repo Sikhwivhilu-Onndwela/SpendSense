@@ -17,37 +17,37 @@
       <form method="POST" action="{% url 'tracker' %}">
         {% csrf_token %}
         <div class="form-group">
-          <label for="allowance">💰 Monthly Allowance (R)</label>
+          <label for="allowance">Monthly Allowance (R)</label>
           <input type="number" id="allowance" name="allowance" placeholder="e.g. 1500"
             min="0" step="0.01" required value="{{ result.allowance|default:'' }}">
         </div>
         <div class="form-divider">Where did it go?</div>
         <div class="form-row">
           <div class="form-group">
-            <label for="food">🍔 Food and Groceries (R)</label>
+            <label for="food">Food and Groceries (R)</label>
             <input type="number" id="food" name="food" placeholder="0.00"
               min="0" step="0.01" value="{{ result.food|default:'' }}">
           </div>
           <div class="form-group">
-            <label for="transport">🚕 Transport and Taxi (R)</label>
+            <label for="transport">Transport and Taxi (R)</label>
             <input type="number" id="transport" name="transport" placeholder="0.00"
               min="0" step="0.01" value="{{ result.transport|default:'' }}">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="airtime">📱 Airtime and Data (R)</label>
+            <label for="airtime">Airtime and Data (R)</label>
             <input type="number" id="airtime" name="airtime" placeholder="0.00"
               min="0" step="0.01" value="{{ result.airtime|default:'' }}">
           </div>
           <div class="form-group">
-            <label for="entertainment">🎮 Entertainment (R)</label>
+            <label for="entertainment">Entertainment (R)</label>
             <input type="number" id="entertainment" name="entertainment" placeholder="0.00"
               min="0" step="0.01" value="{{ result.entertainment|default:'' }}">
           </div>
         </div>
         <div class="form-group">
-          <label for="other">📦 Other Expenses (R)</label>
+          <label for="other">Other Expenses (R)</label>
           <input type="number" id="other" name="other" placeholder="0.00"
             min="0" step="0.01" value="{{ result.other|default:'' }}">
         </div>
@@ -89,7 +89,7 @@
         <h4>Spending Breakdown</h4>
         {% if result.food > 0 %}
         <div class="breakdown-item">
-          <span class="b-label">🍔 Food</span>
+          <span class="b-label">Food</span>
           <div class="b-track">
             <div class="b-fill food" style="width:{% widthratio result.food result.allowance 100 %}"></div>
           </div>
@@ -98,7 +98,7 @@
         {% endif %}
         {% if result.transport > 0 %}
         <div class="breakdown-item">
-          <span class="b-label">🚕 Transport</span>
+          <span class="b-label">Transport</span>
           <div class="b-track">
             <div class="b-fill transport" style="width:{% widthratio result.transport result.allowance 100 %}"></div>
           </div>
@@ -107,7 +107,7 @@
         {% endif %}
         {% if result.airtime > 0 %}
         <div class="breakdown-item">
-          <span class="b-label">📱 Airtime</span>
+          <span class="b-label">Airtime</span>
           <div class="b-track">
             <div class="b-fill airtime" style="width:{% widthratio result.airtime result.allowance 100 %}"></div>
           </div>
@@ -116,7 +116,7 @@
         {% endif %}
         {% if result.entertainment > 0 %}
         <div class="breakdown-item">
-          <span class="b-label">🎮 Entertainment</span>
+          <span class="b-label">Entertainment</span>
           <div class="b-track">
             <div class="b-fill entertainment" style="width:{% widthratio result.entertainment result.allowance 100 %}"></div>
           </div>
@@ -125,7 +125,7 @@
         {% endif %}
         {% if result.other > 0 %}
         <div class="breakdown-item">
-          <span class="b-label">📦 Other</span>
+          <span class="b-label">Other</span>
           <div class="b-track">
             <div class="b-fill other" style="width:{% widthratio result.other result.allowance 100 %}"></div>
           </div>
@@ -134,12 +134,12 @@
         {% endif %}
       </div>
       <a href="{% url 'tips' %}" class="btn-ghost full-w" style="margin-top:1.5rem; display:block; text-align:center;">
-        💡 Get Money Saving Tips →
+        Get Money Saving Tips →
       </a>
     </div>
     {% else %}
     <div class="results-placeholder">
-      <div class="placeholder-icon">📊</div>
+      <div class="placeholder-icon"></div>
       <p>Fill in your numbers on the left and hit <strong>Calculate</strong> — your breakdown will appear here.</p>
     </div>
     {% endif %}
