@@ -19,13 +19,13 @@ def tracker(request):
 
             if remaining < 0:
                 status = 'danger'
-                message = f"⚠️ You're R{abs(remaining):.2f} over budget! Time to cut back."
+                message = f"You're R{abs(remaining):.2f} over budget! Time to cut back."
             elif percent_spent > 75:
                 status = 'warning'
-                message = f"🔥You've spent {percent_spent}% of your allowance. Be careful!"
+                message = f"You've spent {percent_spent}% of your allowance. Be careful!"
             else:
                 status = 'good'
-                message = f"✅ Great job! You still have R{remaining:.2f} left. Keep it up!"
+                message = f"Great job! You still have R{remaining:.2f} left. Keep it up!"
 
             result ={
                 'allowance': allowance,
